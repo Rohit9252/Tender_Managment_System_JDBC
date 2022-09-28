@@ -1,0 +1,31 @@
+show databases;
+create database TenderMangment;
+use Tendermangment;
+create table vender(
+	vid int primary key auto_increment,
+	vname varchar(30),
+	vemail varchar(30) unique,
+	vpassword varchar(10) 
+);
+create table  tender(
+	tid int primary key auto_increment,
+	tname varchar(20) unique,
+	tamount int 
+);
+
+create table tenderbid(
+	bid int ,
+	btid int,
+	foreign key(bid) references vender(vid),
+	foreign key(btid) references tender(tid)
+);
+alter table tenderbid Add amount int;
+
+drop table resultbid;
+create table resultbid(
+	rid int,
+	tid int,
+	result varchar(10),
+	 foreign key(rid) references vender(vid),
+	foreign key(tid) references tender(tid)
+);
