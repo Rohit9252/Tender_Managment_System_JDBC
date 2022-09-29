@@ -1,10 +1,12 @@
 package com.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.Exception.TendorException;
 import com.Exception.VenderException;
 import com.bean.Tender;
+import com.bean.TenderStatus;
 import com.bean.Vender;
 
 public interface TenderDao {
@@ -18,6 +20,15 @@ public interface TenderDao {
 	
 	
 	public ArrayList<Tender> showTender() throws TendorException;
+	
+	
+	public Vender loginVender(String userName, String password) throws VenderException;
+	
+	
+	public String addBidForTender(int vdenderId, int tenderId, int amount) throws TendorException; 
+	
+	public List<TenderStatus> statusOftenderBid(String vname) throws TendorException;
+	
 	
 	
 }
