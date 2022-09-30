@@ -27,7 +27,9 @@ public interface TenderDao {
 	
 	public String addBidForTender(int vdenderId, int tenderId, int amount) throws TendorException; 
 	
-	public List<TenderStatus> statusOftenderBid(String vname) throws TendorException;
+	public List<TenderStatus> statusOftenderBid(int venderId, int tenderid) throws TendorException;
+	
+	public List<TenderStatus> HistoryOfTender(int venderId) throws VenderException;
 	
 	
 	

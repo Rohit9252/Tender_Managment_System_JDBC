@@ -214,7 +214,7 @@ public class TenderDaoImp implements TenderDao {
 			if(x>0) {
 				msg = "Tender Register Sucessfull";
 			}
-			else throw new TendorException("Please Check on once Enter Information");
+			else throw new TendorException("Please Check once Enter Information");
 		
 			} catch (Exception e) {
 				
@@ -227,7 +227,7 @@ public class TenderDaoImp implements TenderDao {
 	}
 
 	@Override
-	public List<TenderStatus> statusOftenderBid(String vname) throws TendorException {
+	public List<TenderStatus> statusOftenderBid(int venderId, int tenderid) throws TendorException {
 	
 		
 		ArrayList<TenderStatus> tstatus = new ArrayList<>();
@@ -236,11 +236,11 @@ public class TenderDaoImp implements TenderDao {
 			 
 			 
 			 PreparedStatement ps = conn.prepareStatement
-			 ("select v.vid,v.vname,t.tid,t.tname,b.amount,b.status from  vender v inner join tender t inner join tenderbid b on v.vid=b.bid AND t.tid=b.btid AND t.tname =?");
+			 (" select v.vid,v.vname,t.tid,t.tname,b.amount,b.status from  vender v inner join tender t inner join tenderbid b on v.vid=b.bid AND t.tid=b.btid AND b.bid=? AND b.btid=?");
 			 
 			 
-			 ps.setString(1, vname);
-		
+			 ps.setInt(1, venderId);
+			 ps.setInt(2, tenderid);
 			 
 			 
 			 ResultSet rs = ps.executeQuery();
@@ -290,6 +290,73 @@ public class TenderDaoImp implements TenderDao {
 		
 		
 		
+	}
+
+	@Override
+	public List<TenderStatus> HistoryOfTender(int venderId) throws VenderException {
+	
+		ArrayList<TenderStatus> thistory = new ArrayList<>();
+		 
+		 try(Connection conn = DButil.provideConnection()) {
+			 
+			 
+			 PreparedStatement ps = conn.prepareStatement
+			 ("select v.vid,v.vname,t.tid,t.tname,b.amount,b.status from  vender v inner join tender t inner join tenderbid b on v.vid=b.bid AND t.tid=b.btid AND v.vid=?");
+			 
+			 
+			 ps.setInt(1, venderId);
+			
+			 
+			 
+			 ResultSet rs = ps.executeQuery();
+			 while(rs.next()) {
+				 
+				int vid=  rs.getInt("vid");
+				String name = rs.getString("vname");
+				int tid = rs.getInt("tid");
+				String tendername = rs.getString("tname");
+				int amount  = rs.getInt("amount");
+				int status = rs.getInt("status");
+				
+				if(status==0) {
+					
+					thistory.add(new TenderStatus(vid, name, tid, tendername, amount, "NOT SELECTED"));
+					
+					
+				} else {
+					
+					thistory.add(new TenderStatus(vid, name, tid, tendername, amount, "SELECTED"));
+					
+				}
+				 
+				 
+				 
+				 
+				 
+			 }
+			 
+			 
+			 
+			 
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		 
+		 
+		 if(thistory.size()==0) {
+			 throw new VenderException("You Enter Wrong Info");
+		 }
+		 
+		 
+		 
+		 
+		 
+		 return thistory;
+		
+		
+		
+		
+
 	}
 
 	
