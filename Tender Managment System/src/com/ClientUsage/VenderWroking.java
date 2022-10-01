@@ -11,7 +11,7 @@ import com.dao.TenderDaoImp;
 
 public class VenderWroking {
 	
-	public static void showChoiceToVender() {
+	public static boolean  showChoiceToVender() {
 //		VenderRegister v = new VenderRegister();
 		Scanner sc = new Scanner(System.in);
 		while(true) {
@@ -48,7 +48,7 @@ public class VenderWroking {
 				
 			case 5:  System.out.println("Do You Want To LogOut! Please Type (Y/N)");
 			String ans =	sc.next();
-			if(ans.equalsIgnoreCase("Y")) return;
+			if(ans.equalsIgnoreCase("Y")) return false;
 			
 			break;
 			
@@ -58,6 +58,9 @@ public class VenderWroking {
 				
 			}
 		}
+		
+		
+		
 		
 	}
 	

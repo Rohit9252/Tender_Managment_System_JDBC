@@ -29,3 +29,38 @@ create table resultbid(
 	 foreign key(rid) references vender(vid),
 	foreign key(tid) references tender(tid)
 );
+
+
+
+show databases;
+create database TenderMangment;
+use Tendermangment;
+create table vender(
+vid int primary key auto_increment,
+vname varchar(30),
+vemail varchar(30) unique,
+vpassword varchar(10) 
+);
+create table  tender(
+tid int primary key auto_increment,
+tname varchar(20) unique,
+tamount int 
+);
+
+
+
+ select t.tid,t.tname,v.vname,b.bid,b.status from tender t inner join vender v  inner join  tenderbid b on b.status=1;
+ select t.tid,t.tname,v.vname,b.bid,b.status from tender t inner join vender v  inner join  tenderbid b on b.status=0;
+ select t.tid,t.tname,v.vname,b.bid,b.status from tender t inner join vender v  inner join  tenderbid b;
+  select * from tender inner join vender inner join  tenderbid;
+  
+ --  select v.vid,v.vname,t.tid,t.tname,b.amount,b.status from  vender v inner join tender t inner join tenderbid b on v.vid=b.bid AND t.tid=b.btid AND t.tname ='hospital';
+--     select v.vid,v.vname,t.tid,t.tname,b.amount,b.status from  vender v inner join tender t inner join tenderbid b on v.vid=b.bid AND t.tid=b.btid AND t.tname ='hospital';
+-- select v.vid,v.vname,t.tid,t.tname,b.amount,b.status from  vender v inner join tender t inner join tenderbid b on v.vid=b.bid AND t.tid=b.btid AND v.vid=2 AND t.tid=3;
+
+select btid, min(amount) from tenderbid group by btid;
+select min(amount) from tenderbid where btid=1;
+
+
+
+

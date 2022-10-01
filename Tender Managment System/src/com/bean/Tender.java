@@ -1,4 +1,4 @@
-package com.bean;
+ package com.bean;
 
 public class Tender {
 	private int tenderId;

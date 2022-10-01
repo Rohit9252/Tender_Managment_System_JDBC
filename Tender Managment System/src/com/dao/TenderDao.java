@@ -6,6 +6,7 @@ import java.util.List;
 import com.Exception.TendorException;
 import com.Exception.VenderException;
 import com.bean.Tender;
+import com.bean.TenderBid;
 import com.bean.TenderStatus;
 import com.bean.Vender;
 
@@ -30,6 +31,15 @@ public interface TenderDao {
 	public List<TenderStatus> statusOftenderBid(int venderId, int tenderid) throws TendorException;
 	
 	public List<TenderStatus> HistoryOfTender(int venderId) throws VenderException;
+	
+	public List<TenderBid> showTenderBid();
+	
+	public List<TenderBid> showMinTenderBid() throws TendorException;
+	
+	public List<TenderBid> showMinStatusTenderBid(int ans) throws TendorException;
+	
+	public String assignTender(int bid, int btid) throws TendorException;
+	
 	
 	
 	
