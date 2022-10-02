@@ -49,7 +49,6 @@ public class VenderWroking {
 			case 5:  System.out.println("Do You Want To LogOut! Please Type (Y/N)");
 			String ans =	sc.next();
 			if(ans.equalsIgnoreCase("Y")) return false;
-			
 			break;
 			
 			default:
@@ -116,7 +115,7 @@ public class VenderWroking {
 			
 			arr.forEach(v->{
 				
-				System.out.println("Vender Id is "+v.getTenderId());
+				System.out.println("Vender Id is "+v.getVenderiId());
 				System.out.println("Vender Name is "+v.getVenderName());
 				System.out.println("Tender Id is "+v.getTenderId());
 				System.out.println("Tender Name is " +v.getTenderName());

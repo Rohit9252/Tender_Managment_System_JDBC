@@ -24,7 +24,8 @@ public class TenderDaoImp implements TenderDao {
 
 		try (Connection conn = DButil.provideConnection()) {
 
-			PreparedStatement ps = conn.prepareStatement("insert into vender(vname, vemail,vpassword) values(?,?,?)");
+			PreparedStatement ps = conn.prepareStatement
+					("insert into vender(vname, vemail,vpassword) values(?,?,?)");
 
 			ps.setString(1, vender.getVenderName());
 			ps.setString(2, vender.getVenderEmail());
